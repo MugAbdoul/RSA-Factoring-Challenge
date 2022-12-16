@@ -1,32 +1,19 @@
 #!/usr/bin/python3
 from sys import argv
 
-def isPrime(n):
-    a =  n / 2
+def Factor(n):
+    a = n / 2
     a = int(a)+1
     for p in range(1, a):
         for q in range(1, a):
             if p * q == n:
-                return True
-    return False
+                if p < q:
+                    t = p
+                    p = q
+                    q = t
 
+                print("{}={}*{}".format(n, p, q))
 
-def Factor(n):
-    a =  n / 2
-    a = int(a)+1
-    for p in range(1, a):
-        if isPrime(p):
-            for q in range(1, a):
-                if isPrime(q):
-                    if p * q == n:
-                        if p < q:
-                            t = p
-                            p = q
-                            q = t
-
-                        print("{}={}*{}".format(n, p, q))
-                        return
-    return
 
 with open(argv[1]) as f:
     for line in f:
